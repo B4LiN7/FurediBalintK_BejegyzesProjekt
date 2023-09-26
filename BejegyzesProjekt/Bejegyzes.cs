@@ -24,11 +24,32 @@ namespace BejegyzesProjekt
             this.szerkesztve = most;
         }
 
-        public string Szerzo { get => szerzo; set => szerzo = value; }
-        public string Tartalom { get => tartalom; set => tartalom = value; }
-        public int Likeok { get => likeok; set => likeok = value; }
-        public DateTime Letrejott { get => letrejott; set => letrejott = value; }
-        public DateTime Szerkesztve { get => szerkesztve; set => szerkesztve = value; }
+        public Bejegyzes()
+        {
+            Console.Write("Szerző: ");
+            this.szerzo = Console.ReadLine();
+            Console.Write("Szöveg: ");
+            this.tartalom = Console.ReadLine();
+
+            this.likeok = 0;
+            DateTime most = DateTime.Now;
+            this.letrejott = most;
+            this.szerkesztve = most;
+        }
+
+        public string Szerzo { get => szerzo; }
+        public string Tartalom 
+        { 
+            get => tartalom; 
+            set
+            {
+                this.tartalom = value;
+                szerkesztve = DateTime.Now;
+            }
+        }
+        public int Likeok { get => likeok;}
+        public DateTime Letrejott { get => letrejott;}
+        public DateTime Szerkesztve { get => szerkesztve;}
 
         public void Like()
         {

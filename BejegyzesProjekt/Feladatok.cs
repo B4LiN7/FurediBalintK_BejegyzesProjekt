@@ -18,8 +18,10 @@ namespace BejegyzesProjekt
             this.bejegyzesek1 = new List<Bejegyzes>();
             this.bejegyzesek2 = new List<Bejegyzes>();
 
-            Beolvas(true);
+            BejegyzesFelvetel();
+            Beolvas(false);
             LikeokOsztasa(20);
+            FelhaszSzoveg();
             Kiir(bejegyzesek1);
         }
 
@@ -50,7 +52,7 @@ namespace BejegyzesProjekt
 
             for (int i = 0; i < ujBejegy; i++)
             {
-                bejegyzesek1.Add(new Bejegyzes("", ""));
+                bejegyzesek1.Add(new Bejegyzes());
             }
         }
 
@@ -87,6 +89,13 @@ namespace BejegyzesProjekt
                     bejegyzesek1[rnd.Next(0, bejegyzesek1.Count)].Like();
                 }
             }
+        }
+
+        public void FelhaszSzoveg()
+        {
+            Console.Write("Adjon megy egy szöveget: ");
+            string szoveg = Console.ReadLine();
+            bejegyzesek1[1].Tartalom = szoveg;
         }
     }
 }
