@@ -19,8 +19,9 @@ namespace BejegyzesProjekt
             this.szerzo = szerzo;
             this.tartalom = tartalom;
             this.likeok = 0;
-            this.letrejott = DateTime.Now;
-            this.szerkesztve = DateTime.Now;
+            DateTime most = DateTime.Now;
+            this.letrejott = most;
+            this.szerkesztve = most;
         }
 
         public string Szerzo { get => szerzo; set => szerzo = value; }
@@ -38,12 +39,12 @@ namespace BejegyzesProjekt
         {
             string kimenet = "";
 
-            kimenet += $"{szerzo} - {likeok} Like - {letrejott}\n";
+            kimenet += $"{szerzo,-30} | Like: {likeok,-10} | Létrehozva: {letrejott}\n";
             if (letrejott != szerkesztve)
             {
                 kimenet += $"Szerkesztve: {szerkesztve}\n";
             }
-            kimenet += tartalom;
+            kimenet += tartalom + "\n";
 
             return kimenet;
         }

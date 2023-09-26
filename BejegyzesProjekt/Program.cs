@@ -6,7 +6,7 @@ namespace BejegyzesProjekt
     {
         static void Main(string[] args)
         {
-
+            Feladatok f = new Feladatok();
             Console.ReadKey();
         }
     }
