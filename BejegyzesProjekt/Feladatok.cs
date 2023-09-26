@@ -20,9 +20,11 @@ namespace BejegyzesProjekt
 
             BejegyzesFelvetel();
             Beolvas(false);
-            LikeokOsztasa(20);
+            LikeokOsztasa(200);
             FelhaszSzoveg();
             Kiir(bejegyzesek1);
+            Legnepszerubb();
+            Console.WriteLine(Van35LikenalTobb());
         }
 
         public void BejegyzesFelvetel()
@@ -96,6 +98,43 @@ namespace BejegyzesProjekt
             Console.Write("Adjon megy egy szöveget: ");
             string szoveg = Console.ReadLine();
             bejegyzesek1[1].Tartalom = szoveg;
+        }
+
+        public void Legnepszerubb()
+        {
+            int legtobbLike = int.MinValue;
+
+            foreach (var item in bejegyzesek1)
+            {
+                if (item.Likeok > legtobbLike)
+                {
+                    legtobbLike = item.Likeok;
+                }
+            }
+
+            Console.WriteLine($"A legnépszerübb bejegyzésnek ennyi likeja van: {legtobbLike}");
+        }
+
+        public bool Van35LikenalTobb()
+        {
+            int LegtobbLike = int.MinValue;
+            int index = 0;
+            do
+            {
+                if (bejegyzesek1[index].Likeok > LegtobbLike)
+                {
+                    LegtobbLike = bejegyzesek1[index].Likeok;
+                }
+            } while (LegtobbLike <= 35 && index < bejegyzesek1.Count);
+
+            if (LegtobbLike >= 35)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
