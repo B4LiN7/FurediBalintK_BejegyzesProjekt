@@ -20,11 +20,15 @@ namespace BejegyzesProjekt
 
             BejegyzesFelvetel();
             Beolvas(false);
-            LikeokOsztasa(200);
+            LikeokOsztasa(20);
             FelhaszSzoveg();
             Kiir(bejegyzesek1);
             Legnepszerubb();
             Console.WriteLine(Van35LikenalTobb());
+            Console.WriteLine(Kevesebb15());
+            Rendezes();
+            Kiir(bejegyzesek1);
+            FajlKiir();
         }
 
         public void BejegyzesFelvetel()
@@ -43,7 +47,10 @@ namespace BejegyzesProjekt
                 try
                 {
                     ujBejegy = Convert.ToInt32(Console.ReadLine());
-                    run = false;
+                    if (ujBejegy > 0)
+                    {
+                        run = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -125,6 +132,7 @@ namespace BejegyzesProjekt
                 {
                     LegtobbLike = bejegyzesek1[index].Likeok;
                 }
+                index++;
             } while (LegtobbLike <= 35 && index < bejegyzesek1.Count);
 
             if (LegtobbLike >= 35)
@@ -135,6 +143,46 @@ namespace BejegyzesProjekt
             {
                 return false;
             }
+        }
+
+        public int Kevesebb15()
+        {
+            int kevessebb = 0;
+            foreach (var item in bejegyzesek1)
+            {
+                if (item.Likeok < 15)
+                {
+                    kevessebb++;
+                }
+            }
+            return kevessebb;
+        }
+
+        public void Rendezes()
+        {
+            for (int i = 0; i < bejegyzesek1.Count; i++)
+            {
+                for (int j = 0; j < bejegyzesek1.Count; j++)
+                {
+                    if (bejegyzesek1[i].Likeok > bejegyzesek1[j].Likeok)
+                    {
+                        Bejegyzes bejegyzes = bejegyzesek1[i];
+                        bejegyzesek1[i] = bejegyzesek1[j];
+                        bejegyzesek1[j] = bejegyzes;
+                    }
+                }
+            }
+        }
+
+        public void FajlKiir()
+        {
+            using (StreamWriter sw = new StreamWriter("bejegyzesek_rendezett.txt"))
+            {
+                for (int i = 0; i < bejegyzesek1.Count; i++)
+                {
+                    sw.WriteLine($"{bejegyzesek1[i].Szerzo};{bejegyzesek1[i].Tartalom}");
+                }
+            }       
         }
     }
 }
